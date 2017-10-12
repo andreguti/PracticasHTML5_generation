@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/style_form.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.serializejson.js"></script>
+        <title>Formulario</title>
+    </head>
+    <body>
+        <div id="div_formulario">
+            <form id = "myform"action="" method="post">
+                <h3 id="h3_create">Create an Account</h3>
+                <input class="input_datos" type="text" name = "txt_name" placeholder="Name" required="true"><br><br>
+                <input class="input_datos" type="tel" name = "txt_phone" placeholder="Phone Number" required="true"><br><br>
+                <input class="input_datos" type="email" name = "txt_email" placeholder="Email" required="true"><br><br>
+                <input class="input_datos" type="password" name = "txt_pass" placeholder="Password" required="true"><br><br>  
+                <input class="input_datos" type="checkbox" id="chkb_terminos">Acepto los t&eacute;rminos y condiciones.<br><br>  
+                <input class="input_datos" type="submit" name = "btn_create" onclick="serializar()" value="Create an Account">
+            </form>
+        </div>
+        <script>
+            function serializar()
+            {
+                var text = "";
+                if($('#chkb_terminos').is(':checked')) 
+                {
+                    text = $('#myform').serializeJSON();
+                    if (text.txt_name == "" || text.txt_phone == "" || text.txt_email == "" || text.txt_pass == "" )
+                    {
+                        alert("Por favor, llene los campos obligatorios");
+                    }
+                    else
+                    {
+                        console.log(text);
+                        alert(text.txt_name+"\n"+text.txt_phone+"\n"+text.txt_email+"\n"+text.txt_pass+"\n");   
+                    }
+                } 
+                else 
+                {
+                    alert("Por favor, acepte los términos");
+                }
+            }
+        </script>
+    </body>
+</html>
